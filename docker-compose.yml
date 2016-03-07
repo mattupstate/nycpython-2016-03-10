@@ -1,0 +1,9 @@
+web:
+  build: .
+  environment:
+    DEBUG: 'yes'
+    AIOHTTP_NOSENDFILE: 1
+  volumes:
+    - .:/usr/src
+  ports:
+    - 5000:5000

@@ -1,0 +1,9 @@
+#!/bin/bash -ex
+
+GUNICORN_WORKERS=${GUNICORN_WORKERS:-1}
+
+exec gunicorn \
+        --bind 0.0.0.0:5000 \
+        --worker-class aiohttp.worker.GunicornWebWorker \
+        --workers ${GUNICORN_WORKERS} \
+        rittenhouse.gunicorn:application

@@ -1,0 +1,8 @@
+.DS_Store
+.git
+.gitignore
+*.egg-info
+*.pyc
+*/*.pyc
+*/*/*.pyc
+*/*/*/*.pyc

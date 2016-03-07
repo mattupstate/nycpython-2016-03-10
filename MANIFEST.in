@@ -1,0 +1,2 @@
+recursive-include rittenhouse/templates *.*
+recursive-include rittenhouse/static *.*

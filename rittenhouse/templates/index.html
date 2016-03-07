@@ -1,0 +1,38 @@
+<html lang="en" >
+<head>
+  <title>Rittenhouse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+  <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body ng-app="rittenhouse" ng-cloak ng-controller="AppCtrl">
+
+  <md-button class="md-raised md-primary" ng-click="newObject()">New</md-button>
+
+  <md-grid-list
+        md-cols-xs="4" md-cols-sm="4" md-cols-md="4" md-cols-gt-md="6"
+        md-row-height-gt-md="1:1" md-row-height="1:1"
+        md-gutter="12px" md-gutter-gt-sm="8px" >
+
+    <md-grid-tile ng-repeat="obj in objects | orderBy:-uuid"
+        ng-class="[colors[$index % colors.length]]"
+        ng-click="sendObjectMessage(obj)">
+      <h1>{[ events[obj.uuid].length ]}</h1><br/>
+      <md-grid-tile-footer>
+        <h3 class="md-caption">{[ obj.uuid ]}</h3>
+      </md-grid-tile-footer>
+    </md-grid-tile>
+
+  </md-grid-list>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+  <script src="/static/js/rfc6570.min.js"></script>
+  <script src="/static/js/angular-hal.min.js"></script>
+  <script src="/static/js/angular-websocket.min.js"></script>
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
