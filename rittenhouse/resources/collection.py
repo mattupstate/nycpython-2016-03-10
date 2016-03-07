@@ -6,13 +6,9 @@
     Object collection resources
 """
 
-import logging
-
 from aiohttp.web import json_response
 
 from rittenhouse.resources.utils import halify_object
-
-logger = logging.getLogger(__name__)
 
 
 async def get(request):
