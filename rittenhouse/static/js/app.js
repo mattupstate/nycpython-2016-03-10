@@ -96,15 +96,12 @@ angular.module('rittenhouse', ['ngMaterial', 'angular-hal', 'ngWebSocket'])
   })
 
   .controller('AppCtrl', function($scope, $rittenhouse) {
-    $scope.objects = {}
-    $scope.events = {}
+    $scope.objects = [];
+    $scope.events = {};
     $scope.colors = ['gray', 'green', 'yellow', 'blue', 'purple', 'red'];
 
     $scope.newObject = function() {
-      $rittenhouse.newObject()
-        .then(function(obj) {
-          addObjects(obj);
-        });
+      $rittenhouse.newObject();
     }
 
     $scope.sendObjectMessage = function(object) {
@@ -112,16 +109,10 @@ angular.module('rittenhouse', ['ngMaterial', 'angular-hal', 'ngWebSocket'])
     }
 
     function addObjects(objects) {
-      if(!angular.isArray(objects)) {
-        objects = [objects];
-      }
-
       objects.forEach(function(item) {
-        if(angular.isUndefined($scope.objects[item.uuid])) {
-          $scope.objects[item.uuid] = item;
-          $scope.events[item.uuid] = [];
-        }
-      })
+        $scope.events[item.uuid] = [];
+      });
+      $scope.objects = $scope.objects.concat(objects);
     }
 
     function onObjectMessage(event) {
@@ -132,8 +123,7 @@ angular.module('rittenhouse', ['ngMaterial', 'angular-hal', 'ngWebSocket'])
     }
 
     function onObjectCreated(event) {
-      var payload = event.payload;
-      addObjects(payload.object);
+      addObjects([event.payload.object]);
     }
 
     $rittenhouse.onObjectCreated(onObjectCreated);

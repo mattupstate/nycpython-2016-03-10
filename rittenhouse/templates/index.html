@@ -14,7 +14,7 @@
         md-row-height-gt-md="1:1" md-row-height="1:1"
         md-gutter="12px" md-gutter-gt-sm="8px" >
 
-    <md-grid-tile ng-repeat="obj in objects | orderBy:-uuid"
+    <md-grid-tile ng-repeat="obj in objects"
         ng-class="[colors[$index % colors.length]]"
         ng-click="sendObjectMessage(obj)">
       <h1>{[ events[obj.uuid].length ]}</h1><br/>
