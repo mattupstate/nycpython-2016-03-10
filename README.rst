@@ -34,6 +34,10 @@ To run the application::
 
     $ make server
 
+To view the application logs::
+
+    $ docker-compose logs web
+
 When you do not care to work with this project anymore you may want to stop
 the Docker machine::
 
@@ -42,6 +46,7 @@ the Docker machine::
 .. _gevent: http://www.gevent.org/
 .. _Twisted: https://twistedmatrix.com/
 .. _Tornado: http://www.tornadoweb.org/
+.. _asyncio: https://docs.python.org/3/library/asyncio.html
 .. _aiohttp: http://aiohttp.readthedocs.org/
 .. _meetup: www.meetup.com/nycpython/events/228922678/
 .. _Websocket Protocol: https://tools.ietf.org/html/rfc6455
