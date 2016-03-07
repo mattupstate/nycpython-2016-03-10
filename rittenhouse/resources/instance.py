@@ -6,10 +6,10 @@
     Object instance resources
 """
 
-from aiohttp.web import Response, json_response
+from aiohttp.web import Response
 
 from rittenhouse.persistence import ObjectNotFoundError
-from rittenhouse.resources.utils import halify_object
+from rittenhouse.resources import utils
 
 
 def get_object(fn):
@@ -19,7 +19,7 @@ def get_object(fn):
         try:
             obj = await request.app.repository.find(uuid)
         except ObjectNotFoundError:
-            return json_response({'message': 'Not found'}, status=404)
+            return utils.json_response({'message': 'Not found'}, status=404)
 
         return await fn(request, obj)
 
@@ -28,7 +28,7 @@ def get_object(fn):
 
 @get_object
 async def get(request, obj):
-    return json_response(halify_object(obj))
+    return utils.json_response(utils.halify_object(obj))
 
 
 @get_object

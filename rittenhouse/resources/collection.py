@@ -6,9 +6,7 @@
     Object collection resources
 """
 
-from aiohttp.web import json_response
-
-from rittenhouse.resources.utils import halify_object
+from rittenhouse.resources import utils
 
 
 async def get(request):
@@ -17,7 +15,7 @@ async def get(request):
 
     objects = await request.app.repository.find_all()
 
-    return json_response({
+    return utils.json_response({
         '_links': {
             'self': {
                 'href': '/objects'
@@ -26,7 +24,7 @@ async def get(request):
         'total': len(objects),
         '_embedded': {
             'items': [
-                halify_object(obj)
+                utils.halify_object(obj)
                 for obj in objects
             ]
         }
@@ -40,4 +38,4 @@ async def post(request):
         'object': obj
     })
 
-    return json_response(halify_object(obj))
+    return utils.json_response(utils.halify_object(obj))
