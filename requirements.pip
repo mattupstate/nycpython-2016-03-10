@@ -1,5 +1,6 @@
 aiohttp>=0.21,<0.22
 aiohttp_debugtoolbar>=0.1,<0.2
 aiohttp_jinja2>=0.7,<0.8
+cchardet>=1.0,<1.1
 gunicorn>=19.4,<19.5
 shortuuid>0.4,<0.5
